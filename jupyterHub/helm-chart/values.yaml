@@ -21,8 +21,8 @@ hub:
     url: null
   labels: null
   image:
-    name: yuvipanda/jupyterhub-kubernetes-hub
-    tag: v0.12
+    name: 81santi81/hub
+    tag: latest
   resources:
     requests:
       cpu: 0.2
@@ -58,17 +58,18 @@ singleuser:
     homeMountPath: /home/jovyan
     # type: hostPath
     # homeHostPathTemplate: /data/project/paws/userhomes/{userid}
+  mounts:
+    shared:
+      ml: my-data-disk	     	 
   image:
-    name: yuvipanda/tiniest-notebook
-    tag: v1.2
+    name: 81santi81/tininotebook
+    tag: latest
   cpu:
     limit: null
     guarantee: null
   memory:
     limit: null
     guarantee: null
-
-
 
 cull:
   enabled: true
@@ -86,3 +87,4 @@ metrics:
 admin:
   access: true
   users: null
+
