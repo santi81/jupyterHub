@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: jupyterhub-nfs
+  labels:
+    volume: jupyterhub-nfs
+spec:
+  capacity:
+    storage: 1Mi
+  accessModes:
+    - ReadWriteMany
+  claimRef:
+    namespace: myhub
+    name: jupyterhub-volume
+  nfs:
+    # FIXME: use the right IP from service
+    server: 10.3.254.111
+    path: "/exports"
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: jupyterhub-volume
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Mi
+
