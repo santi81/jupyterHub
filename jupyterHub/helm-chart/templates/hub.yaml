@@ -4,14 +4,15 @@ apiVersion: v1
 metadata:
   name: hub-db-dir
   namespace: {{ default .Release.Namespace .Values.name }}
-  annotations:
-    volume.beta.kubernetes.io/storage-class: hub-storage-{{ default .Release.Namespace .Values.name }}
+  # annotations:
+    # volume.beta.kubernetes.io/storage-class: hub-storage-{{ default .Release.Namespace .Values.name }}
 spec:
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
       storage: 10Gi
+  storageClassName: hub-storage-{{ default .Release.Namespace .Values.name }} 
 ---
 {{- end }}
 apiVersion: v1

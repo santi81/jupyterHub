@@ -55,7 +55,7 @@ singleuser:
   storage:
     type: dynamic
     capacity: 10Gi
-    homeMountPath: /home/jovyan
+    homeMountPath: /home/trainee
     # type: hostPath
     # homeHostPathTemplate: /data/project/paws/userhomes/{userid}
   mounts:
