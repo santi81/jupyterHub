@@ -24,9 +24,9 @@ spec:
         name: busybox
         volumeMounts:
           # name must match the volume name below
-          - name: jupyterhub-volume
+          - name: jupyterhub-nfs-volume
             mountPath: "/mnt"
       volumes:
-      - name: jupyterhub-volume
+      - name: jupyterhub-nfs-volume
         persistentVolumeClaim:
-          claimName: jupyterhub-volume
+          claimName: jupyterhub-nfs-volume

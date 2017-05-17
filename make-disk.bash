@@ -29,8 +29,6 @@ echo $mntpath
 gcloud compute ssh provisioner-01 --zone us-central1-c --command "sudo mkfs.ext4 -F -E lazy_itable_init=0,lazy_journal_init=0,discard ${blkdev}"
 gcloud compute ssh provisioner-01 --zone us-central1-c --command "sudo mkdir -p ${mntpath}"
 gcloud compute ssh provisioner-01 --zone us-central1-c --command "sudo mount -o discard,defaults ${blkdev} ${mntpath}"
-gcloud compute ssh provisioner-01 --zone us-central1-c --command "sudo umount ${mntpath}"
-gcloud compute instances delete provisioner-01 --zone us-central1-c -q  
 
 echo "New disk '${disk_name}' mounted at ${mntpath}"
 echo "After running the course-specific data retrieval script, run:"

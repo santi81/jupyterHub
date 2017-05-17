@@ -41,11 +41,11 @@ proxy:
 # Set this explicitly if you want to use a static allocated
 # IP as the public LoadBalancer IP. Requires support by
 # your Cloud Provider. GKE supports this
-publicIP: null
+publicIP: 104.154.207.216
 
 # Google OAuth secrets
 auth:
-  type: dummy
+  type: sap
 
 token:
   proxy: 'generate with pwgen 64 and put here'
@@ -55,7 +55,7 @@ singleuser:
   storage:
     type: dynamic
     capacity: 10Gi
-    homeMountPath: /home/trainee
+    homeMountPath: /home/workspace
     # type: hostPath
     # homeHostPathTemplate: /data/project/paws/userhomes/{userid}
   mounts:
