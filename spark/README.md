@@ -59,7 +59,7 @@ The Master [service](../../docs/user-guide/services.md) is the master service
 for a Spark cluster.
 
 Use the
-[`examples/spark/spark-master-controller.yaml`](spark-master-controller.yaml)
+[`spark-master-controller.yaml`](spark-master-controller.yaml)
 file to create a
 [replication controller](../../docs/user-guide/replication-controller.md)
 running the Spark Master service.
