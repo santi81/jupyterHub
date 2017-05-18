@@ -86,7 +86,7 @@ Getting Started
                   
    8. Setting up and Running a Kubernetes Spark Cluster.
          
-         https://github.wdf.sap.corp/i033085/jupyterHub/tree/master/spark
+                  https://github.wdf.sap.corp/i033085/jupyterHub/tree/master/spark
          
                   
          
