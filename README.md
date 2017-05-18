@@ -1,4 +1,4 @@
-# jupyterHub
+#### Kubernetes based Jupyter Hub training enviroment for Scalable Machine Learning using Spark and Vora
 
 A training environment based on Kubernetes that allows to launch applications within a few minutes. This document is currently
 using the Google cloud environment, but it is designed to work everywhere (e.g. AWS, Azure, and soon on the SAP Cloud Platform).
@@ -30,12 +30,16 @@ They are  three separate content folders:
 Getting Started
 
  We’ll be using Google Container Engine (GKE), but this should work anywhere you have installed a Kubernetes cluster
+  0. Clone the repository 
  
   1. Create a Container Engine Cluster with n nodes with kubernetes version 1.6.2 : 
   
          gcloud container clusters create jupyterhub --num-nodes=n --cluster-version=1.6.2
+         
+  2. Create Disk for training content and Datasets
+         sh 
   
-  2. Create a namespace for Kubernetes
+  3. Create a namespace for Kubernetes
   
          kubectl create namespace jupyterhub 
      
