@@ -78,6 +78,12 @@ Getting Started
          5. Run and Expose the NFS Server
          
                   kubectl create --namespace=jupyterhub -f nfsDisk/nfsVolumes.yaml
+                  
+         6. Create an NFS Web-Server and test the NFS Server (Optional)
+         
+                  kubectl create --namespace=jupyterhub -f nfsDisk/nfsweb.yaml
+         
+                  
          
          
                   
