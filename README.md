@@ -50,12 +50,20 @@ Getting Started
   4. You can now copy your Data-Sets to this disk as below (Optional): 
   
          gcloud compute copy-files ~/LOCAL-FILE-1 ~/LOCAL-FILE-2 provisioner-01:/mnt/disks/jupyterhub-public-ro-data 
+         
+  5. Un-Mount the disk and delete the provisioner instance :
   
-  5. Create Disk for Shared Content (read-write)
+         sh unmount-disk.bash jupyterhub-public-ro-data
+  
+  6. Create Disk for Shared Content (read-write)
   
          sh make-disk.bash jupyterhub-public-rw-data 100GB
   
-  6. Create a namespace for Kubernetes
+  7. Un-Mount the disk and delete the provisioner instance :
+  
+         sh unmount-disk.bash jupyterhub-public-rw-data
+  
+  8. Create a namespace for Kubernetes
   
          kubectl create namespace jupyterhub 
      
