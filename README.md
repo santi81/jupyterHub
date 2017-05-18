@@ -26,3 +26,10 @@ They are  three separate content folders:
          
          Shared Folder - This is a shared drive to which everyone has read/write access to.It’s used for collaboration and 
          content sharing
+         
+Getting Started
+ We’ll be using Google Container Engine (GKE), but this should work anywhere you have installed a Kubernetes cluster
+ 
+  Create a Container Engine Cluster with n nodes : 
+         gcloud container clusters create jupyterhub --num-nodes=n
+     
