@@ -28,12 +28,12 @@ spec:
       volumes:
        - name: rawdata
          gcePersistentDisk:
-           pdName: my-data-disk
+           pdName: jupyterhub-public-ro-data
            fsType: ext4
            readOnly: True
        - name: sharedcontent
          persistentVolumeClaim: 
-           claimName: jupyterhub-volume
+           claimName: jupyterhub-nfs-volume
            readOnly : False
             
 
