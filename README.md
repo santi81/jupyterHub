@@ -44,12 +44,15 @@ Getting Started
          gcloud container clusters create jupyterhub --num-nodes=n --cluster-version=1.6.2
          
   3. Create Disk for training content and Datasets(read-only).This script creates a disk on the google cloud,attaches the disk to a provisioner instance and mounts the disk in the configured path
+  
          sh make-disk.bash jupyterhub-public-ro-data 100GB
  
   4. You can now copy your Data-Sets to this disk as below (Optional): 
+  
          gcloud compute copy-files ~/LOCAL-FILE-1 ~/LOCAL-FILE-2 provisioner-01:/mnt/disks/jupyterhub-public-ro-data 
   
   5. Create Disk for Shared Content (read-write)
+  
          sh make-disk.bash jupyterhub-public-rw-data 100GB
   
   6. Create a namespace for Kubernetes
