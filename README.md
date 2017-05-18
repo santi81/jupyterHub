@@ -55,15 +55,34 @@ Getting Started
   
          sh unmount-disk.bash jupyterhub-public-ro-data
   
-  6. Create Disk for Shared Content (read-write)
-  
-         sh make-disk.bash jupyterhub-public-rw-data 100GB
-  
-  7. Un-Mount the disk and delete the provisioner instance :
-  
-         sh unmount-disk.bash jupyterhub-public-rw-data
-  
-  8. Create a namespace for Kubernetes
+  6. Create a namespace for Kubernetes
   
          kubectl create namespace jupyterhub 
+         
+  7. Running the NFS Server
+  
+         1. Create Disk for Shared Content (read-write)
+  
+                  sh make-disk.bash jupyterhub-public-rw-data 100GB
+  
+         2. Un-Mount the disk and delete the provisioner instance :
+  
+                  sh unmount-disk.bash jupyterhub-public-rw-data
+                  
+         3. Create the NFS Server. Make note of the cluster IP of the NFS Server 
+         
+                  kubectl create --namespace=jupyterhub -f nfsDisk/nfsService_V1.yaml
+                 
+         4. Edit nfsDisk/nfsVolumes.yaml and update the NFS server IP from above.
+         
+         5. Run and Expose the NFS Server
+         
+                  kubectl create --namespace=jupyterhub -f nfsDisk/nfsVolumes.yaml
+         
+         
+                  
+         
+         
+         
+         
      
