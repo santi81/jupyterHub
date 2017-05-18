@@ -30,7 +30,10 @@ They are  three separate content folders:
 Getting Started
 
  We’ll be using Google Container Engine (GKE), but this should work anywhere you have installed a Kubernetes cluster
+ 
   0. Clone the repository 
+  
+         git clone git@github.wdf.sap.corp:i033085/jupyterHub.git
  
   1. Create a Container Engine Cluster with n nodes with kubernetes version 1.6.2 : 
   
