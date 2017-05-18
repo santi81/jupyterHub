@@ -60,7 +60,7 @@ singleuser:
     # homeHostPathTemplate: /data/project/paws/userhomes/{userid}
   mounts:
     shared:
-      ml: jupyterhub-shared-data	     	 
+      ml: jupyterhub-public-ro-data	     	 
   image:
     name: 81santi81/tininotebook
     tag: latest
