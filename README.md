@@ -28,8 +28,10 @@ They are  three separate content folders:
          content sharing
          
 Getting Started
+
  We’ll be using Google Container Engine (GKE), but this should work anywhere you have installed a Kubernetes cluster
  
   Create a Container Engine Cluster with n nodes : 
+  
          gcloud container clusters create jupyterhub --num-nodes=n
      
