@@ -90,6 +90,10 @@ Getting Started
                   
       For detailed instructions on setting up a spark cluster refer to: 
       [spark](./spark/README.md)
+      
+   9. Launch the jupyter hub environment
+   
+                  helm install jupyterHub/helm-chart --name=jupyterhub --namespace=jupyterhub -f config.yaml
          
                   
                   
