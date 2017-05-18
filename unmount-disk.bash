@@ -13,6 +13,6 @@ fi
 NAME="$1"
 disk_name="${NAME}"
 mntpath="/mnt/disks/${disk_name}"
-gcloud compute ssh provisioner-01 --zone us-central1-c --command "sudo umount ${mntpath}"
-gcloud compute instances delete provisioner-01 --zone us-central1-c -q  
+gcloud compute ssh provisioner-01  --command "sudo umount ${mntpath}"
+gcloud compute instances delete provisioner-01  -q  
 
