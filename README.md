@@ -82,6 +82,11 @@ Getting Started
          6. Create an NFS Web-Server and test the NFS Server (Optional)
          
                   kubectl create --namespace=jupyterhub -f nfsDisk/nfsweb.yaml
+                  
+                  
+   8. Setting up and Running a Kubernetes Spark Cluster.
+         
+         https://github.wdf.sap.corp/i033085/jupyterHub/tree/master/spark
          
                   
          
