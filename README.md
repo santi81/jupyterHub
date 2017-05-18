@@ -86,7 +86,7 @@ Getting Started
                   
    8. Set up a Kubernetes based Spark Cluster
                   sh start-spark.sh 
-                  For detailed instructions on setting up a spark cluster refer to: [https://github.wdf.sap.corp/i033085/jupyterHub/tree/master/spark]
+                  For detailed instructions on setting up a spark cluster refer to: [spark](spark)
          
                   
                   
