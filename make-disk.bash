@@ -29,6 +29,7 @@ echo $mntpath
 gcloud compute ssh provisioner-01  --command "sudo mkfs.ext4 -F -E lazy_itable_init=0,lazy_journal_init=0,discard ${blkdev}"
 gcloud compute ssh provisioner-01  --command "sudo mkdir -p ${mntpath}"
 gcloud compute ssh provisioner-01  --command "sudo mount -o discard,defaults ${blkdev} ${mntpath}"
+gcloud compute ssh provisioner-01  --command "sudo chmod a+w ${mntpath}"
 
 echo "New disk '${disk_name}' mounted at ${mntpath}"
 echo "After running the course-specific data retrieval script, run:"
