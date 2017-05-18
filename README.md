@@ -39,8 +39,11 @@ Getting Started
   
          gcloud container clusters create jupyterhub --num-nodes=n --cluster-version=1.6.2
          
-  2. Create Disk for training content and Datasets
-         sh 
+  2. Create Disk for training content and Datasets(read-only)
+         sh make-disk.bash jupyterhub-public-ro-data 500GB
+  
+  3. Create Disk for Shared Content (read-write)
+         sh make-disk.bash jupyterhub-public-rw-data 500GB
   
   3. Create a namespace for Kubernetes
   
