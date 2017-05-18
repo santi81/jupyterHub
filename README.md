@@ -31,7 +31,11 @@ Getting Started
 
  We’ll be using Google Container Engine (GKE), but this should work anywhere you have installed a Kubernetes cluster
  
-  Create a Container Engine Cluster with n nodes : 
+  1. Create a Container Engine Cluster with n nodes with kubernetes version 1.6.2 : 
   
-         gcloud container clusters create jupyterhub --num-nodes=n
+         gcloud container clusters create jupyterhub --num-nodes=n --cluster-version=1.6.2
+  
+  2. Create a namespace for Kubernetes
+  
+         kubectl create namespace jupyterhub 
      
