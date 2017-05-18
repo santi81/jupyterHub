@@ -65,7 +65,7 @@ file to create a
 running the Spark Master service.
 
 ```console
-$ kubectl create -f examples/spark/spark-master-controller.yaml
+$ kubectl --namespace=jupyterhub create -f spark-master-controller.yaml
 replicationcontroller "spark-master-controller" created
 ```
 
@@ -75,7 +75,7 @@ create a logical service endpoint that Spark workers can use to access the
 Master pod:
 
 ```console
-$ kubectl create -f examples/spark/spark-master-service.yaml
+$ kubectl --namespace=jupyterhub create -f spark-master-service.yaml
 service "spark-master" created
 ```
 
@@ -116,7 +116,7 @@ Once the master is started, we'll want to check the Spark WebUI. In order to acc
 Deploy the proxy controller with [`examples/spark/spark-ui-proxy-controller.yaml`](spark-ui-proxy-controller.yaml):
 
 ```console
-$ kubectl create -f examples/spark/spark-ui-proxy-controller.yaml
+$ kubectl --namespace=jupyterhub create -f spark-ui-proxy-controller.yaml
 replicationcontroller "spark-ui-proxy-controller" created
 ```
 
@@ -155,11 +155,11 @@ program.
 
 The Spark workers need the Master service to be running.
 
-Use the [`examples/spark/spark-worker-controller.yaml`](spark-worker-controller.yaml) file to create a
+Use the [`spark-worker-controller.yaml`](spark-worker-controller.yaml) file to create a
 [replication controller](../../docs/user-guide/replication-controller.md) that manages the worker pods.
 
 ```console
-$ kubectl create -f examples/spark/spark-worker-controller.yaml
+$ kubectl --namespace=jupyterhub create -f spark-worker-controller.yaml
 replicationcontroller "spark-worker-controller" created
 ```
 
@@ -195,14 +195,14 @@ for more details.
 Deploy Zeppelin:
 
 ```console
-$ kubectl create -f examples/spark/zeppelin-controller.yaml
+$ kubectl --namespace=jupyterhub create -f zeppelin-controller.yaml
 replicationcontroller "zeppelin-controller" created
 ```
 
 And the corresponding service:
 
 ```console
-$ kubectl create -f examples/spark/zeppelin-service.yaml
+$ kubectl --namespace=jupyterhub create -f zeppelin-service.yaml
 service "zeppelin" created
 ```
 
@@ -238,7 +238,7 @@ print nums.filter(isprime).count()
 Simply copy and paste the python snippet into pyspark from within the zeppelin pod:
 
 ```console
-$ kubectl exec zeppelin-controller-ja09s -it pyspark
+$ kubectl --namespace=jupyterhub exec zeppelin-controller-ja09s -it pyspark
 Python 2.7.9 (default, Mar  1 2015, 12:57:24)
 [GCC 4.9.2] on linux2
 Type "help", "copyright", "credits" or "license" for more information.
@@ -311,7 +311,7 @@ information.
 ## tl;dr
 
 ```console
-kubectl create -f examples/spark
+kubectl --namespace=jupyterhub create -f examples/spark
 ```
 
 After it's setup:
