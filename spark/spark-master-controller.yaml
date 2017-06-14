@@ -13,7 +13,8 @@ spec:
     spec:
       containers:
         - name: spark-master
-          image: 81santi81/spark
+          image: 81santi81/spark:2.1.1
+          imagePullPolicy: Always
           command: ["/start-master"]
           ports:
             - containerPort: 7077

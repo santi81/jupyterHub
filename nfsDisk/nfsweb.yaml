@@ -40,7 +40,8 @@ spec:
       volumes:
         - name: nfs
           persistentVolumeClaim:
-            claimName: jupyterhub-nfs-volume
+           # claimName: jupyterhub-nfs-volume
+            claimName: test-claim
         - name: config-volume
           configMap:
             name: nfs-web-config

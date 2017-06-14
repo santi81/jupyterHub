@@ -6,7 +6,7 @@ metadata:
     volume: jupyterhub-nfs-volume
 spec:
   capacity:
-    storage: 1Mi
+    storage: 20Gi
   accessModes:
     - ReadWriteMany
   claimRef:
@@ -14,8 +14,8 @@ spec:
     name: jupyterhub-nfs-volume
   nfs:
     # FIXME: use the right IP from service
-    server: 10.3.249.141
-    path: "/exports"
+    server: 10.39.244.2
+    path: "/exports/SharedData"
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
@@ -26,5 +26,35 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: 1Mi
+      storage: 20Gi
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: jupyterhub-raw-data
+  labels:
+    volume: jupyterhub-raw-data
+spec:
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadOnlyMany
+  claimRef:
+    namespace: jupyterhub
+    name: jupyterhub-raw-data
+  nfs:
+    # FIXME: use the right IP from service
+    server: 10.39.244.2
+    path: "/exports/RawData"
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: jupyterhub-raw-data
+spec:
+  accessModes:
+    - ReadOnlyMany
+  resources:
+    requests:
+      storage: 20Gi
 

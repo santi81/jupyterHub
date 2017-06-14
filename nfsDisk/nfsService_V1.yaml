@@ -29,7 +29,7 @@ spec:
       volumes:
         - name: nfspv
           gcePersistentDisk:
-            pdName: jupyterhub-public-rw-data
+            pdName: jupyterhub-persistency
             fsType: ext4  
 ---
 kind: Service
