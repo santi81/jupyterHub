@@ -4,7 +4,7 @@
 set -e
 
 if [ "$#" != 1  ]; then
-        echo Usage: $0 <gke,onPrem> 
+        echo Usage: $0 "gke or onPrem"
         exit 1
 fi
 
@@ -25,7 +25,7 @@ kubectl --namespace=jupyterhub create -f spark/spark-worker-controller.yaml
 
 
 # Use the spark-ui-proxy-service.yaml file to expose spark ui proxy service
-if [ "$deploy" -eq "onPrem"]; then 
+if [ "$deploy" == "onPrem" ]; then 
 	kubectl --namespace=jupyterhub create -f spark/spark-ui-proxy-service.yaml
 else
 	kubectl --namespace=jupyterhub create -f spark/spark-ui-proxy-service_gke.yaml

@@ -73,9 +73,10 @@ RUN conda install -c conda-forge jupyterhub
 RUN conda install scikit-learn pandas matplotlib scipy seaborn
 RUN conda install altair --channel conda-forge
 RUN conda install -c r r-essentials
+RUN conda install -c conda-forge tensorflow
 
 # for pyspark demos
-ENV APACHE_SPARK_VERSION 2.0.1
+ENV APACHE_SPARK_VERSION 2.1.1
 
 RUN apk update \
 && apk add ca-certificates wget \
@@ -84,7 +85,7 @@ RUN apk update \
 ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
 ENV PATH $PATH:$JAVA_HOME/bin
 ENV JAVA_VERSION 8u92
-ENV JAVA_ALPINE_VERSION 8.121.13-r2
+ENV JAVA_ALPINE_VERSION 8.131.11-r1
 
 RUN { \
         echo '#!/bin/sh'; \
@@ -132,7 +133,7 @@ RUN chmod 777 /home/
 RUN mkdir -p /home/
 COPY resources/ /home/  
 ADD resources/ /home/
-RUN chmod 777 /home/SampleNotebooks
+RUN chmod -R 777 /home/Notebooks
 EXPOSE 8888 
 
 CMD jupyterhub-singleuser \

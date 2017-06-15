@@ -17,7 +17,8 @@ hub:
   baseUrl: "/"
   cookieSecret: null
   db:
-    type: sqlite-pvc
+    #type: sqlite-pvc
+    type: sqlite-memory
     url: null
   labels: null
   image:
@@ -41,7 +42,7 @@ proxy:
 # Set this explicitly if you want to use a static allocated
 # IP as the public LoadBalancer IP. Requires support by
 # your Cloud Provider. GKE supports this
-publicIP: 104.154.207.216
+#publicIP: 104.198.110.148
 
 # Google OAuth secrets
 auth:
@@ -54,6 +55,7 @@ singleuser:
   extraLabels: {}
   storage:
     type: dynamic
+    class: managed-nfs-storage
     capacity: 10Gi
     homeMountPath: /home/workspace
     # type: hostPath
@@ -62,8 +64,8 @@ singleuser:
     shared:
       ml: jupyterhub-public-ro-data	     	 
   image:
-    name: 81santi81/tininotebook
-    tag: latest
+    name: 81santi81/tiniest-notebook
+    tag: 2
   cpu:
     limit: null
     guarantee: null

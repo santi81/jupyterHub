@@ -106,11 +106,11 @@ if shared_data_mounts_str:
     for shareName, diskName in shared_data_mounts.items():
         c.KubeSpawner.volumes += [{
             'name': 'shared-data-{name}'.format(name=shareName),
-            'gcePersistentDisk': {
-                'fsType': 'ext4',
-                'pdName': diskName,
-                'readOnly': True
+            'persistentVolumeClaim': {
+             'claimName': 'jupyterhub-raw-data',
+             'readOnly' : True
             }
+
         }]
         c.KubeSpawner.volume_mounts += [{
             'mountPath': '/data/shared/{name}'.format(name=shareName),

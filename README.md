@@ -92,8 +92,9 @@ Getting Started
       [spark](./spark/README.md)
       
    9. Launch the jupyter hub environment
+                  helm init
    
-                  helm install jupyterHub/helm-chart --name=jupyterhub --namespace=jupyterhub -f config.yaml
+                  helm install jupyterHub/helm-chart --name=jupyterhub --namespace=jupyterhub -f jupyterhub/config.yaml
          
                   
                   
