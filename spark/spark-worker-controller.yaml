@@ -33,7 +33,7 @@ spec:
            readOnly : True
        - name: sharedcontent
          persistentVolumeClaim: 
-           claimName: jupyterhub-nfs-volume
+           claimName: jupyterhub-shared-data
            readOnly : False
             
 

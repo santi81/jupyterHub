@@ -120,16 +120,16 @@ if shared_data_mounts_str:
 
 
 c.KubeSpawner.volumes += [{
-           'name': 'jupyterhub-nfs-volume',
+           'name': 'jupyterhub-shared-data',
            'persistentVolumeClaim': { 
-	     'claimName': 'jupyterhub-nfs-volume',
+	     'claimName': 'jupyterhub-shared-data',
              'readOnly' : False
 	    }
             
         }]
 c.KubeSpawner.volume_mounts += [{
             'mountPath': '/data/shared/nfs',
-            'name': 'jupyterhub-nfs-volume',
+            'name': 'jupyterhub-shared-data',
             'readOnly': False
         }]
 

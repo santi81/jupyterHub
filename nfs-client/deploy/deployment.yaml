@@ -21,11 +21,11 @@ spec:
             - name: PROVISIONER_NAME
               value: sap.io/nfsprovisioner
             - name: NFS_SERVER
-              value: 10.39.244.2
+              value: 10.39.247.44
             - name: NFS_PATH
               value: /exports/UserData
       volumes:
         - name: nfs-client-root
           nfs:
-            server: 10.39.244.2
+            server: 10.39.247.44
             path: /exports/UserData

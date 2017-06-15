@@ -128,6 +128,7 @@ spec:
       containers:
       - name: hub-container
         image: {{ .Values.hub.image.name }}:{{ .Values.hub.image.tag }}
+        imagePullPolicy: Always
         volumeMounts:
           - mountPath: /etc/jupyterhub/config/
             name: config
@@ -137,7 +138,6 @@ spec:
         {{- end }}
         resources:
 {{ toYaml .Values.hub.resources | indent 12}}
-        imagePullPolicy: IfNotPresent
         env:
         # Put this here directly so hub will restart when we
         # change this
