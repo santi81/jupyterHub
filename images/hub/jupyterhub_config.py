@@ -168,7 +168,7 @@ elif auth_type == 'tmp':
     c.JupyterHub.authenticator_class = 'tmpauthenticator.TmpAuthenticator'
     email_domain = 'local'
 elif auth_type == 'sap':
-    c.JupyterHub.authenticator_class = 'oauthenticator.GenericOAuthenticator'
+    c.JupyterHub.authenticator_class = 'oauthenticator.generic.GenericOAuthenticator'
     c.GenericOAuthenticator.client_secret = 'jupyterhub'
     c.GenericOAuthenticator.client_id = 'bd382640-c1c6-303c-9dcd-ea238fa6c4b9'
     email_domain = 'local'
