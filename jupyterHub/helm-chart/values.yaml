@@ -46,16 +46,20 @@ proxy:
 
 # OAuth config
 auth:
-  type: github
+  type: sap
   github:
     clientId: db3708441d8b4b6c6e15
     clientSecret: 8e22c76ef147a63089e957028bec22e8d1a05512
   sap:
-    clientId: bd382640-c1c6-303c-9dcd-ea238fa6c4b9
+    #clientId: bd382640-c1c6-303c-9dcd-ea238fa6c4b9
+    clientId: 1200275b-fbec-3968-ba8e-843fe365875e
     clientSecret: jupyterhub
-    authorizeURL: https://oauthasservices-b4230efae.us1.hana.ondemand.com/oauth2/api/v1/authorize
-    tokenURL: https://oauthasservices-b4230efae.us1.hana.ondemand.com/oauth2/api/v1/token
-    resourceURL: https://testservice1b4230efae.us1.hana.ondemand.com/testservice-1.0-SNAPSHOT/helloworld
+    #authorizeURL: https://oauthasservices-b4230efae.us1.hana.ondemand.com/oauth2/api/v1/authorize
+    #tokenURL: https://oauthasservices-b4230efae.us1.hana.ondemand.com/oauth2/api/v1/token
+    #resourceURL: https://testservice1b4230efae.us1.hana.ondemand.com/testservice-1.0-SNAPSHOT/helloworld
+    authorizeURL: https://oauthasservices-i033085trial.hanatrial.ondemand.com/oauth2/api/v1/authorize
+    tokenURL: https://oauthasservices-i033085trial.hanatrial.ondemand.com/oauth2/api/v1/token 
+    resourceURL: https://oauthservicehcpi033085trial.hanatrial.ondemand.com/oAuthServiceHCP/helloworld 
     usernameKey: user_name
 token:
   proxy: 'generate with pwgen 64 and put here'
