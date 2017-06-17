@@ -167,6 +167,11 @@ elif auth_type == 'dummy':
 elif auth_type == 'tmp':
     c.JupyterHub.authenticator_class = 'tmpauthenticator.TmpAuthenticator'
     email_domain = 'local'
+elif auth_type == 'github':
+    c.JupyterHub.authenticator_class = 'oauthenticator.GitHubOAuthenticator'
+    c.GitHubOAuthenticator.client_secret = '8e22c76ef147a63089e957028bec22e8d1a05512'
+    c.GitHubOAuthenticator.client_id = 'db3708441d8b4b6c6e15'
+    email_domain = 'local'
 elif auth_type == 'sap':
     c.JupyterHub.authenticator_class = 'oauthenticator.generic.GenericOAuthenticator'
     c.GenericOAuthenticator.client_secret = 'jupyterhub'

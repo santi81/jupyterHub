@@ -30,8 +30,8 @@ RUN pip3 install --no-cache-dir \
 
 RUN pip3 --no-cache-dir install git+https://github.com/jupyterhub/kubespawner@228799af
 
-RUN pip3 install  git+https://github.com/santi81/oauthenticator.git
-#RUN pip3 install  git+https://github.com/jupyterhub/oauthenticator.git
+#RUN pip3 install  git+https://github.com/santi81/oauthenticator.git
+RUN pip3 install  git+https://github.com/jupyterhub/oauthenticator.git
 
 ENV  OAUTH2_TOKEN_URL https://oauthasservices-b4230efae.us1.hana.ondemand.com/oauth2/api/v1/token	
 ENV  OAUTH2_AUTHORIZE_URL https://oauthasservices-b4230efae.us1.hana.ondemand.com/oauth2/api/v1/authorize

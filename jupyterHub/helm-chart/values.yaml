@@ -46,7 +46,7 @@ proxy:
 
 # Google OAuth secrets
 auth:
-  type: sap
+  type: github
 
 token:
   proxy: 'generate with pwgen 64 and put here'
