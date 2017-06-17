@@ -174,8 +174,8 @@ elif auth_type == 'github':
     email_domain = 'local'
 elif auth_type == 'sap':
     c.JupyterHub.authenticator_class = 'oauthenticator.generic.GenericOAuthenticator'
-    c.GenericOAuthenticator.client_secret = 'jupyterhub'
-    c.GenericOAuthenticator.client_id = 'bd382640-c1c6-303c-9dcd-ea238fa6c4b9'
+    c.GenericOAuthenticator.client_secret = get_config('auth.sap.client-secret')
+    c.GenericOAuthenticator.client_id = get_config('auth.sap.client-id')
     email_domain = 'local'
 
 

@@ -55,6 +55,10 @@ data:
   auth.github.client-id: {{.Values.auth.github.clientId | quote}}
   auth.github.client-secret: {{.Values.auth.github.clientSecret | quote}}
   {{- end }}
+  {{ if eq .Values.auth.type "sap" -}}
+  auth.sap.client-id: {{.Values.auth.sap.clientId | quote}}
+  auth.sap.client-secret: {{.Values.auth.sap.clientSecret | quote}}
+  {{- end }}
   {{ if .Values.singleuser.cmd -}}
   singleuser.cmd: {{ .Values.singleuser.cmd | quote }}
   {{- end }}
