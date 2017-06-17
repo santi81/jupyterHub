@@ -171,6 +171,16 @@ spec:
             configMapKeyRef:
               name: hub-config
               key: token.proxy
+        {{ if eq .Values.auth.type "sap" -}}
+        - name: OAUTH2_AUTHORIZE_URL 
+          value: "{{ .Values.auth.sap.authorizeURL }}"
+        - name: OAUTH2_TOKEN_URL
+          value: "{{ .Values.auth.sap.tokenURL }}"
+        - name: OAUTH2_USERDATA_URL
+          value: "{{ .Values.auth.sap.resourceURL }}"
+        - name: OAUTH2_USERNAME_KEY
+          value: "{{ .Values.auth.sap.usernameKey }}"
+        {{- end }}
         ports:
           - containerPort: 8081
             name: hub

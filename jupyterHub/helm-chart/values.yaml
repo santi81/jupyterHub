@@ -44,15 +44,19 @@ proxy:
 # your Cloud Provider. GKE supports this
 #publicIP: 104.198.110.148
 
-# Google OAuth secrets
+# OAuth config
 auth:
-  type: sap
+  type: github
   github:
     clientId: db3708441d8b4b6c6e15
     clientSecret: 8e22c76ef147a63089e957028bec22e8d1a05512
   sap:
     clientId: bd382640-c1c6-303c-9dcd-ea238fa6c4b9
     clientSecret: jupyterhub
+    authorizeURL: https://oauthasservices-b4230efae.us1.hana.ondemand.com/oauth2/api/v1/authorize
+    tokenURL: https://oauthasservices-b4230efae.us1.hana.ondemand.com/oauth2/api/v1/token
+    resourceURL: https://testservice1b4230efae.us1.hana.ondemand.com/testservice-1.0-SNAPSHOT/helloworld
+    usernameKey: user_name
 token:
   proxy: 'generate with pwgen 64 and put here'
 
