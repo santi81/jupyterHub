@@ -209,8 +209,8 @@ if 'STATSD_SERVICE_HOST' in os.environ:
 # Enable admins to access user servers
 c.JupyterHub.admin_access = get_config('admin.access')
 
-#c.Authenticator.admin_users = get_config('admin.users', [])
-c.Authenticator.admin_users = ['i033085', 'i820620']
+c.Authenticator.admin_users = get_config('admin.users',[])
+#c.Authenticator.admin_users = ['i033085', 'i820620']
 
 cull_token = get_config('cull.token', None)
 if cull_token:

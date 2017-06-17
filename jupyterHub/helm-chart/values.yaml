@@ -46,7 +46,7 @@ proxy:
 
 # OAuth config
 auth:
-  type: sap
+  type: github
   github:
     clientId: db3708441d8b4b6c6e15
     clientSecret: 8e22c76ef147a63089e957028bec22e8d1a05512
@@ -101,5 +101,8 @@ metrics:
 
 admin:
   access: true
-  users: null
+  users:
+   - i033085
+   - i820620
+   - santi81
 
