@@ -4,7 +4,7 @@
 
 
 # Replace with the NFS Server 
-nfsServer: 0.0.0.0
+nfsServer: 10.39.240.209
 storage:
   shared:
     path: "/exports/SharedData"
@@ -15,4 +15,11 @@ storage:
   user:
    path: "/exports/UserData"
    size: "20Gi"
+nfsWeb:
+  serviceType:
+    type: LoadBalancer
+    nodePort:
+      port: 32500
+    loadBalancer:
+      publicIP: null
 
