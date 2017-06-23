@@ -6,7 +6,7 @@ metadata:
     volume: jupyterhub-shared-data
 spec:
   capacity:
-    storage: 3Ti
+    storage: {{.Values.storage.shared.size | quote}}
   accessModes:
     - ReadWriteMany
   claimRef:
@@ -14,8 +14,8 @@ spec:
     name: jupyterhub-shared-data
   nfs:
     # FIXME: use the right IP from service
-    server: 10.125.2.77
-    path: "/container_persistancy/s4h-ml-k8/SharedData"
+    server: {{.Values.nfsServer | quote}}
+    path: {{.Values.storage.shared.path | quote}} 
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
@@ -26,7 +26,7 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: 3Ti
+      storage: {{.Values.storage.shared.size | quote}} 
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -36,7 +36,7 @@ metadata:
     volume: jupyterhub-raw-data
 spec:
   capacity:
-    storage: 3Ti
+    storage: {{.Values.storage.readOnly.size | quote}}
   accessModes:
     - ReadOnlyMany
   claimRef:
@@ -44,8 +44,8 @@ spec:
     name: jupyterhub-raw-data
   nfs:
     # FIXME: use the right IP from service
-    server: 10.125.2.77
-    path: "/container_persistancy/s4h-ml-k8/RawData"
+    server: {{.Values.nfsServer | quote}}
+    path: {{.Values.storage.readOnly.path | quote}}
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
@@ -56,7 +56,7 @@ spec:
     - ReadOnlyMany
   resources:
     requests:
-      storage: 3Ti
+      storage: {{.Values.storage.readOnly.size | quote}}
 
 ---
 apiVersion: v1
@@ -67,7 +67,7 @@ metadata:
     volume: jupyterhub-user-data
 spec:
   capacity:
-    storage: 3Ti
+    storage: {{.Values.storage.user.size | quote}}
   accessModes:
     - ReadWriteMany
   claimRef:
@@ -75,8 +75,8 @@ spec:
     name: jupyterhub-user-data
   nfs:
     # FIXME: use the right IP from service
-    server: 10.125.2.77
-    path: "/container_persistancy/s4h-ml-k8/UserData/"
+    server: {{.Values.nfsServer | quote}}
+    path: {{.Values.storage.user.path | quote}}
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
@@ -87,6 +87,6 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: 3Ti
+      storage: {{.Values.storage.user.path | quote}}
 
 

@@ -12,8 +12,8 @@ spec:
   resources:
     requests:
       storage: 10Gi
-  #storageClassName: hub-storage-{{ default .Release.Namespace .Values.name }} 
-  storageClassName: managed-nfs-storage 
+  storageClassName: {{.Values.hub.storage.class | quote}} 
+ 
 ---
 {{- end }}
 apiVersion: v1
@@ -65,8 +65,7 @@ data:
   singleuser.storage.type: {{ .Values.singleuser.storage.type | quote }}
   singleuser.storage.home_mount_path: {{ .Values.singleuser.storage.homeMountPath | quote }}
   {{ if eq .Values.singleuser.storage.type "dynamic" -}}
-  #singleuser.storage.class: single-user-storage-{{ default .Release.Namespace .Values.name }}
-  singleuser.storage.class: managed-nfs-storage 
+  singleuser.storage.class: {{.Values.singleuser.storage.class | quote }}
   singleuser.storage.capacity: {{.Values.singleuser.storage.capacity | quote }}
   {{ else if eq .Values.singleuser.storage.type "hostPath" -}}
   singleuser.storage.home_host_path_template: {{ .Values.singleuser.storage.homeHostPathTemplate | quote }}
@@ -180,6 +179,18 @@ spec:
           value: "{{ .Values.auth.sap.resourceURL }}"
         - name: OAUTH2_USERNAME_KEY
           value: "{{ .Values.auth.sap.usernameKey }}"
+        {{- end }}
+        {{ if .Values.hub.proxy -}}
+        - name: HTTP_PROXY_HOST
+          value: "{{ .Values.hub.proxy.proxyHost }}"
+        - name: HTTP_PROXY_PORT
+          value: "{{ .Values.hub.proxy.proxyPort }}"
+        {{- end }}
+        {{ if eq .Values.auth.type "github" -}}
+        {{ if .Values.auth.github.githubhost -}}
+        - name: GITHUB_HOST
+          value: "{{ .Values.auth.github.githubhost }}"
+        {{- end }}
         {{- end }}
         ports:
           - containerPort: 8081

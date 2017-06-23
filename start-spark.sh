@@ -21,7 +21,11 @@ kubectl --namespace=jupyterhub create -f spark/spark-master-service.yaml
 kubectl --namespace=jupyterhub create -f spark/spark-ui-proxy-controller.yaml
 
 # Use the spark-worker-controller.yaml file to create a replication controller that manages the worker pods.
-kubectl --namespace=jupyterhub create -f spark/spark-worker-controller.yaml
+if [ "$deploy" == "onPrem" ]; then
+	kubectl --namespace=jupyterhub create -f spark/spark-worker-controller.yaml
+else
+	kubectl --namespace=jupyterhub create -f spark/spark-worker-controller_gke.yaml
+fi
 
 
 # Use the spark-ui-proxy-service.yaml file to expose spark ui proxy service

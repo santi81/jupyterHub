@@ -1,6 +1,7 @@
 import yaml
 import os
 import sys
+import tornado
 
 def get_config(key, default=None):
     """
@@ -32,6 +33,8 @@ c.JupyterHub.port = int(os.environ['PROXY_PUBLIC_SERVICE_PORT'])
 
 # the hub should listen on all interfaces, so the proxy can access it
 c.JupyterHub.hub_ip = '0.0.0.0'
+
+tornado.httpclient.AsyncHTTPClient.configure("tornado.curl_httpclient.CurlAsyncHTTPClient")
 
 c.KubeSpawner.namespace = os.environ.get('POD_NAMESPACE', 'default')
 

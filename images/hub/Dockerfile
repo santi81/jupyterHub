@@ -30,8 +30,8 @@ RUN pip3 install --no-cache-dir \
 
 RUN pip3 --no-cache-dir install git+https://github.com/jupyterhub/kubespawner@228799af
 
-#RUN pip3 install  git+https://github.com/santi81/oauthenticator.git
-RUN pip3 install  git+https://github.com/jupyterhub/oauthenticator.git
+RUN pip3 install  git+https://github.com/santi81/oauthenticator.git
+#RUN pip3 install  git+https://github.com/jupyterhub/oauthenticator.git
 
 ADD jupyterhub_config.py /srv/jupyterhub_config.py
 
