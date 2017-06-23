@@ -29,8 +29,8 @@ hub:
       cpu: 0.2
       memory: 1Gi
   proxy:
-    proxyHost: null 
-    proxyPort: null
+    proxyHost: proxy.pal.sap.corp
+    proxyPort: 8080
 
 
 # Set this explicitly if you want to use a static allocated
@@ -49,37 +49,35 @@ proxy:
       memory: 512Mi
   labels: null
   serviceType:
-    type: LoadBalancer
+    type: NodePort
     nodePort:
      port: 32500
     loadBalancer:
-      publicIP: 35.197.21.113
+      publicIP: 104.198.110.148
 
 # OAuth config
 auth:
   type: sap
   github:
-    clientId: db3708441d8b4b6c6e15
-    clientSecret: 8e22c76ef147a63089e957028bec22e8d1a05512
-    #clientId: 9206c861707f843d8dc6
-    #clientSecret: dbaf98e4244dd18e7004e33e47a906bb5b75add3
-    #githubhost: github.wdf.sap.corp
+    #clientId: db3708441d8b4b6c6e15
+    #clientSecret: 8e22c76ef147a63089e957028bec22e8d1a05512
+    clientId: 9206c861707f843d8dc6
+    clientSecret: dbaf98e4244dd18e7004e33e47a906bb5b75add3
+    githubhost: github.wdf.sap.corp
   sap:
-    #SOH-PAL
-    #clientId: bd382640-c1c6-303c-9dcd-ea238fa6c4b9
-    #HANA TRIAL
-    clientId: 1200275b-fbec-3968-ba8e-843fe365875e 
-    #clientId: f08660ad-5e4e-3795-86bd-adea886244af  
+    #clientId: bd382640-c1c6-303c-9dcd-ea238fa6c4b9 "SOH-PAL
+    #clientId: 1200275b-fbec-3968-ba8e-843fe365875e "HANA External Trial
+    clientId: f08660ad-5e4e-3795-86bd-adea886244af  
     clientSecret: jupyterhub
     #authorizeURL: https://oauthasservices-b4230efae.us1.hana.ondemand.com/oauth2/api/v1/authorize
     #tokenURL: https://oauthasservices-b4230efae.us1.hana.ondemand.com/oauth2/api/v1/token
     #resourceURL: https://testservice1b4230efae.us1.hana.ondemand.com/testservice-1.0-SNAPSHOT/helloworld
-    authorizeURL: https://oauthasservices-i033085trial.hanatrial.ondemand.com/oauth2/api/v1/authorize
-    tokenURL: https://oauthasservices-i033085trial.hanatrial.ondemand.com/oauth2/api/v1/token 
-    resourceURL: https://oauthservicehcpi033085trial.hanatrial.ondemand.com/oAuthServiceHCP/helloworld 
-    #authorizeURL: https://oauthasservices-i033085sapdev.int.sap.hana.ondemand.com/oauth2/api/v1/authorize 
-    #tokenURL: https://oauthasservices-i033085sapdev.int.sap.hana.ondemand.com/oauth2/api/v1/token 
-    #resourceURL: https://oauthservicehcpi033085sapdev.int.sap.hana.ondemand.com/oAuthServiceHCP/helloworld 
+    #authorizeURL: https://oauthasservices-i033085trial.hanatrial.ondemand.com/oauth2/api/v1/authorize
+    #tokenURL: https://oauthasservices-i033085trial.hanatrial.ondemand.com/oauth2/api/v1/token 
+    #resourceURL: https://oauthservicehcpi033085trial.hanatrial.ondemand.com/oAuthServiceHCP/helloworld 
+    authorizeURL: https://oauthasservices-i033085sapdev.int.sap.hana.ondemand.com/oauth2/api/v1/authorize 
+    tokenURL: https://oauthasservices-i033085sapdev.int.sap.hana.ondemand.com/oauth2/api/v1/token 
+    resourceURL: https://oauthservicehcpi033085sapdev.int.sap.hana.ondemand.com/oAuthServiceHCP/helloworld 
     usernameKey: user_name
 token:
   proxy: 'generate with pwgen 64 and put here'
@@ -88,8 +86,8 @@ singleuser:
   extraLabels: {}
   storage:
     type: dynamic
-    class: managed-nfs-storage
-    #class: echox-nfs
+    #class: managed-nfs-storage
+    class: echox-nfs
     capacity: 10Gi
     homeMountPath: /home/workspace
     # type: hostPath
