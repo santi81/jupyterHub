@@ -85,7 +85,7 @@ RUN apk update \
 ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
 ENV PATH $PATH:$JAVA_HOME/bin
 ENV JAVA_VERSION 8u92
-ENV JAVA_ALPINE_VERSION 8.131.11-r1
+ENV JAVA_ALPINE_VERSION 8.131.11-r2
 
 RUN { \
         echo '#!/bin/sh'; \
@@ -109,7 +109,7 @@ RUN cd /tmp && \
 
 RUN cd /usr/local && ln -s spark-${APACHE_SPARK_VERSION}-bin-hadoop2.6 spark
 
-ENV "__TOREE_SPARK_OPTS__": "--master spark://spark-master:7077"
+ENV "SPARK_OPTS": "--master spark://spark-master:7077 --total-executor-cores 6 "
 ENV SPARK_HOME /usr/local/spark
 ENV PYTHONPATH $SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.10.1-src.zip
 ENV R_LIBS_USER $SPARK_HOME/R/lib
@@ -117,11 +117,11 @@ ENV HADOOP_USER_NAME root
 
 # install Toree
 RUN pip3 install https://dist.apache.org/repos/dist/dev/incubator/toree/0.2.0/snapshots/dev1/toree-pip/toree-0.2.0.dev1.tar.gz 
-RUN jupyter toree install --interpreters=Scala,PySpark,SparkR,SQL --spark_opts="--master spark://spark-master:7077"
+RUN jupyter toree install --interpreters=Scala,PySpark,SparkR,SQL --spark_opts="--master spark://spark-master:7077 --total-executor-cores 3"
 
 #CMD ["/usr/bin/jupyter", "notebook", "--ip=0.0.0.0", "--port=8888"]
 
-RUN ln -s /data/shared/ml /home/RawData
+RUN ln -s /data/shared/ml /home/Datasets
 #RUN ln -s /home/    /home/trainee
 RUN ln -s /data/shared/nfs /home/SharedContent
 
@@ -131,6 +131,7 @@ ENV SPARK_USER root
 WORKDIR /home/
 RUN chmod 777 /home/
 RUN mkdir -p /home/
+RUN mkdir -p /home/"$JPY_USER"
 COPY resources/ /home/  
 ADD resources/ /home/
 RUN chmod -R 777 /home/Notebooks
