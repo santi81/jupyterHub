@@ -54,8 +54,9 @@ Getting Started on Google container Engine
   -  For persistency we use an NFS based Storage.If you have an NFS server already running you can skip this step
       and proceed to step for provisioning the NFS Volumes
          
-         -  Create Disk which acts as the underlying storage for NFS.This script creates a disk on the google cloud,
-            attaches the disk to a provisioner instance and mounts the disk in the configured path
+         -  Create Disk which acts as the underlying storage for NFS.This script creates a disk 
+            on the google cloud,attaches the disk to a provisioner instance
+            and mounts the disk in the configured path
 
                ./make-disk.sh jupyterhub-persistency 100GB
 
