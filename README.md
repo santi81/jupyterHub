@@ -18,8 +18,10 @@ Currently we support the following :
          Advanced Scala (Scala is an ideal language for distributed data processing and a command
          of the language is beneficial to everyone who is actively working with Spark)
           
+          
 For the user interface,we are using Jupyter notebooks.The training environment has some nice features. After logging on with
 an SAP account (using single-sign-on, we also support github based authentication), every user gets his/her individual Jupyter environment.
+
 They are  three separate content folders:
  
          Public Folder (read-only) - Containing training content and datasets
@@ -33,77 +35,85 @@ Getting Started
 
  Google container Engine 
  
-  0. Clone the repository 
+           0. Clone the repository 
+
+                  git clone git@github.wdf.sap.corp:i033085/jupyterHub.git
+
+           1. Set the Compute Zone for gcloud
+
+                  gcloud config set compute/zone us-west1-a
+
+           2. Create a Container Engine Cluster with n nodes with kubernetes version 1.6.4 : 
+
+                  gcloud container clusters create jupyterhub --num-nodes=n --cluster-version=1.6.4
+
+           3. Create a namespace for Kubernetes
+
+                  kubectl create namespace jupyterhub 
+
+           4. For persistency we use an NFS based Storage.If you have an NFS server already running you can skip this step and proceed to step 6 
   
-         git clone git@github.wdf.sap.corp:i033085/jupyterHub.git
-         
-  1. Set the Compute Zone for gcloud
-  
-         gcloud config set compute/zone us-west1-a
- 
-  2. Create a Container Engine Cluster with n nodes with kubernetes version 1.6.4 : 
-  
-         gcloud container clusters create jupyterhub --num-nodes=n --cluster-version=1.6.4
-         
-  3. Create a namespace for Kubernetes
-  
-         kubectl create namespace jupyterhub 
-         
-  4. For persistency we use an NFS based Storage.If you have an NFS server already running you can skip this step and proceed to step 6 
-  
-         Create Disk which acts as the underlying storage for NFS.This script creates a disk on the google cloud,attaches the          disk to a provisioner instance and mounts the disk in the configured path
-  
-                  ./make-disk.sh jupyterhub-persistency 100GB
+                  Create Disk which acts as the underlying storage for NFS.This script creates a disk on the google cloud,attaches the          disk to a provisioner instance and mounts the disk in the configured path
+
+                           ./make-disk.sh jupyterhub-persistency 100GB
+
+                  Create the required folder structures to store Public,Shared and Personal Data
+
+                           ./prepare-dish.sh jupyterhub-persistency
+
+                  You can also copy your Data-Sets to this disk as below (Optional): 
+
+                           gcloud compute copy-files ~/LOCAL-FILE-1 ~/LOCAL-FILE-2 provisioner-01:/mnt/disks/RawData 
+                           gcloud compute copy-files ~/LOCAL-FILE-1 ~/LOCAL-FILE-2 provisioner-01:/mnt/disks/SharedData
+
+                  Un-Mount the disk and delete the provisioner instance :
+                           ./unmount-disk.sh jupyterhub-persistency
                   
-         Create the required folder structures to store Public,Shared and Personal Data
-                  
-                  ./prepare-dish.sh jupyterhub-persistency
-                  
-         You can also copy your Data-Sets to this disk as below (Optional): 
-  
-                  gcloud compute copy-files ~/LOCAL-FILE-1 ~/LOCAL-FILE-2 provisioner-01:/mnt/disks/RawData 
-                  gcloud compute copy-files ~/LOCAL-FILE-1 ~/LOCAL-FILE-2 provisioner-01:/mnt/disks/SharedData
-         
-         Un-Mount the disk and delete the provisioner instance :
-                  ./unmount-disk.sh jupyterhub-persistency
-                  
-  5. Running the NFS Server
+         5. Running the NFS Server
                
-         Create the NFS Server. Make note of the cluster IP of the NFS Server 
+                  Create the NFS Server. Make note of the cluster IP of the NFS Server 
          
-                  kubectl create --namespace=jupyterhub -f nfsDisk/nfsServer.yaml
+                            kubectl create --namespace=jupyterhub -f nfsDisk/nfsServer.yaml
                  
-  6. Provision the NFS volumes
+          6. Provision the NFS volumes
         
-          For installation in the google cloud please use                                 
-                  nfsDisk/nfsChart/gke_values.template as reference, and update the NFS server IP address from above.
+                   For installation in the google cloud please use                                 
+                            nfsDisk/nfsChart/gke_values.template as reference, and update the NFS server IP address from                                    above.
           
-          If you have followed the instructions above to run the NFS server the simplest way would be to :
+                  If you have followed the instructions above to run the NFS server the simplest way would be to :
           
-                  mv nfsDisk/nfsChart/gke_values.template nfsDisk/nfsChart/values.yaml
+                           cp nfsDisk/nfsChart/gke_values.template nfsDisk/nfsChart/values.yaml
           
-          After adjusting the helm-chart values, run the helm chart for provisioning the NFS volumes as below:
+                  After adjusting the helm-chart values, run the helm chart for provisioning the NFS volumes as below:
                   
-                  helm install nfsDisk/nfsChart --name=nfs --namespace=jupyterhub
+                           helm install nfsDisk/nfsChart --name=nfs --namespace=jupyterhub
                   
-  7. Install Dynamic NFS Provisioner for Individual User Persistency
+         7. Install Dynamic NFS Provisioner for Individual User Persistency
   
-         Each user is assigned a persistent volume.We use Dynamic NFS provisioning for that .To install this,the simplest
-         way would be to 
-   
-   
-   
-   8. Set up a Kubernetes based Spark Cluster
-   
-                  sh start-spark.sh 
+                  Each user is assigned a persistent volume.We use Dynamic NFS provisioning for that .To install this,the                       simplest way would be to use nfs-client/nfsProvisioner/gke_values.yaml as reference and update the NFS                         server IP from above.
                   
-      For detailed instructions on setting up a spark cluster refer to: 
-      [spark](./spark/README.md)
+                           cp nfs-client/nfsProvisioner/gke_values.yaml nfs-client/nfsProvisioner/values.yaml
+                  
+                  Install the helm-chart as below :
+                   
+                        helm install nfs-client/nfsProvisioners --name=provisioner --namespace=jupyterhub
+   
+         8. Set up a Kubernetes based Spark Cluster
+   
+                  ./start-spark.sh gke
+                  
+                  For detailed instructions on setting up a spark cluster refer to: 
+                  [spark](./spark/README.md)
       
-   9. Launch the jupyter hub environment
+        9. Launch the Jupyter Hub environment
                   helm init
    
-                  helm install jupyterHub/helm-chart --name=jupyterhub --namespace=jupyterhub -f jupyterhub/config.yaml
+           We support Oauth based user authentication for Jupyterhub.Currently there is support for SAP single sign on using
+           HCP oauth services as well as Github based authentication or you can skip the authentication.Simplest way to get
+           started here is using jupyterHub/helm-chart/gke_values.template as reference and update the authentication         
+           mechanism.To make the set-up simpler we set the authentication as dummy as start the Hub server as below :
+           
+           helm install jupyterHub/helm-chart --name=jupyterhub --namespace=jupyterhub -f jupyterhub/config.yaml
          
                   
                   
