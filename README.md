@@ -80,20 +80,24 @@ Getting Started on Google container Engine
                  
  - Provision the NFS volumes
         
-         -  For installation in the google cloud please use nfsDisk/nfsChart/gke_values.template as reference,
-             and update the NFS server IP address from above.
+         -  For installation in the google cloud please use nfsDisk/nfsChart/gke_values.template 
+            as reference and update the NFS server IP address from above.
           
-         -  If you have followed the instructions above to run the NFS server the simplest way would be to :
+         -  If you have followed the instructions above to run the NFS server 
+            the simplest way would be to :
           
                   cp nfsDisk/nfsChart/gke_values.template nfsDisk/nfsChart/values.yaml
           
-         -   After adjusting the helm-chart values, run the helm chart for provisioning the NFS volumes as below:
+         -   After adjusting the helm-chart values
+             run the helm chart for provisioning the NFS volumes as below:
                   
                            helm install nfsDisk/nfsChart --name=nfs --namespace=jupyterhub
                   
 - Install Dynamic NFS Provisioner for Individual User Persistency
   
-         -   Each user is assigned a persistent volume.We use Dynamic NFS provisioning for that .To install this,the                        simplest way would be to use nfs-client/nfsProvisioner/gke_values.yaml as reference and update the NFS                         server IP from above.
+         -   Each user is assigned a persistent volume.We use Dynamic NFS provisioning for that .
+             To install this,the simplest way would be to use nfs-client/nfsProvisioner/gke_values.yaml
+             as reference and update the NFS server IP from above.
                   
                            cp nfs-client/nfsProvisioner/gke_values.yaml nfs-client/nfsProvisioner/values.yaml
                   
@@ -111,11 +115,13 @@ Getting Started on Google container Engine
          
          -   helm init
    
-         -  We support Oauth based user authentication for Jupyterhub.Currently there is support for SAP single sign
-            on using HCP oauth services as well as Github based authentication or you can skip the authentication.
+         -  We support Oauth based user authentication for Jupyterhub.Currently there is support
+            for SAP single sign on using HCP oauth services as well as Github based authentication 
+            or you can skip the authentication.
+            
             Simplest way to get started here is using jupyterHub/helm-chart/gke_values.template as reference 
-            and update the authentication mechanism.To make the set-up simpler we set the authentication as dummy and
-            start the Hub server as below :
+            and update the authentication mechanism.To make the set-up simpler
+            we set the authentication as dummy and start the Hub server as below :
            
               helm install jupyterHub/helm-chart --name=jupyterhub --namespace=jupyterhub -f jupyterhub/config.yaml
          
