@@ -19,6 +19,7 @@ Currently we support the following :
      of the language is beneficial to everyone who is actively working with Spark)
           
           
+
 For the user interface,we are using Jupyter notebooks.The training environment has some nice features. After logging on with
 an SAP account (using single-sign-on, we also support github based authentication), every user gets his/her individual Jupyter environment.
 
@@ -30,7 +31,8 @@ They are  three separate content folders:
          
  - Shared Folder - This is a shared drive to which everyone has read/write access to.It’s used for collaboration and 
     content sharing
-         
+       
+       
 Getting Started on Google container Engine 
  
   -  Clone the repository 
@@ -108,12 +110,13 @@ Getting Started on Google container Engine
          
          -   helm init
    
-         -  We support Oauth based user authentication for Jupyterhub.Currently there is support for SAP single sign on using
-           HCP oauth services as well as Github based authentication or you can skip the authentication.Simplest way to get
-           started here is using jupyterHub/helm-chart/gke_values.template as reference and update the authentication         
-           mechanism.To make the set-up simpler we set the authentication as dummy as start the Hub server as below :
+         -  We support Oauth based user authentication for Jupyterhub.Currently there is support for SAP single sign
+            on using HCP oauth services as well as Github based authentication or you can skip the authentication.
+            Simplest way to get started here is using jupyterHub/helm-chart/gke_values.template as reference 
+            and update the authentication mechanism.To make the set-up simpler we set the authentication as dummy and
+            start the Hub server as below :
            
-                  helm install jupyterHub/helm-chart --name=jupyterhub --namespace=jupyterhub -f jupyterhub/config.yaml
+              helm install jupyterHub/helm-chart --name=jupyterhub --namespace=jupyterhub -f jupyterhub/config.yaml
          
                   
                   
