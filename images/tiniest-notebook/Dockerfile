@@ -117,7 +117,7 @@ ENV HADOOP_USER_NAME root
 
 # install Toree
 RUN pip3 install https://dist.apache.org/repos/dist/dev/incubator/toree/0.2.0/snapshots/dev1/toree-pip/toree-0.2.0.dev1.tar.gz 
-RUN jupyter toree install --interpreters=Scala,PySpark,SparkR,SQL --spark_opts="--master spark://spark-master:7077 --total-executor-cores 3"
+RUN jupyter toree install --interpreters=Scala,PySpark,SparkR,SQL --spark_opts="--master spark://spark-master:7077 --total-executor-cores 10"
 
 #CMD ["/usr/bin/jupyter", "notebook", "--ip=0.0.0.0", "--port=8888"]
 

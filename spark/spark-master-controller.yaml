@@ -22,3 +22,18 @@ spec:
           resources:
             requests:
               cpu: 100m
+          volumeMounts:
+            - mountPath: /home/Datasets
+              name: rawdata
+            - mountPath: /home/SharedContent
+              name: sharedcontent
+      volumes:
+       - name: rawdata
+         persistentVolumeClaim: 
+           claimName: jupyterhub-raw-data
+           readOnly : True
+       - name: sharedcontent
+         persistentVolumeClaim: 
+           claimName: jupyterhub-shared-data
+           readOnly : False
+
