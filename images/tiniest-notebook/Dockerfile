@@ -137,7 +137,7 @@ ADD resources/ /home/
 RUN chmod -R 777 /home/Notebooks
 EXPOSE 8888 
 
-CMD jupyterhub-singleuser \
+CMD ln -s /data/shared/personal /home/WS_$JPY_USER && jupyterhub-singleuser \
   --port=8888 \
   --ip=0.0.0.0 \
   --user="$JPY_USER" \

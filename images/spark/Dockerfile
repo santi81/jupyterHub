@@ -36,7 +36,7 @@ RUN cd
 # if numpy is installed on a driver it needs to be installed on all
 # workers, so install it everywhere
 RUN apt-get update && \
-    apt-get install -y python-numpy && \
+    apt-get install -y python3-numpy && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 

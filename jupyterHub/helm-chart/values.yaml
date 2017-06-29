@@ -89,7 +89,7 @@ singleuser:
     #class: managed-nfs-storage
     class: echox-nfs
     capacity: 10Gi
-    homeMountPath: /home/workspace
+    homeMountPath: /data/shared/personal
     # type: hostPath
     # homeHostPathTemplate: /data/project/paws/userhomes/{userid}
   mounts:
