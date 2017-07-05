@@ -185,6 +185,10 @@ spec:
           value: "{{ .Values.hub.proxy.proxyHost }}"
         - name: HTTP_PROXY_PORT
           value: "{{ .Values.hub.proxy.proxyPort }}"
+        - name: http_proxy
+          value: "http://{{ .Values.hub.proxy.proxyHost }}:{{ .Values.hub.proxy.proxyPort }}"
+        - name: https_proxy
+          value: "http://{{ .Values.hub.proxy.proxyHost }}:{{ .Values.hub.proxy.proxyPort }}"
         {{- end }}
         {{ if eq .Values.auth.type "github" -}}
         {{ if .Values.auth.github.githubhost -}}

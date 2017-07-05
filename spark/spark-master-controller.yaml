@@ -23,7 +23,7 @@ spec:
             requests:
               cpu: 100m
           volumeMounts:
-            - mountPath: /home/Datasets
+            - mountPath: /home/Public
               name: rawdata
             - mountPath: /home/SharedContent
               name: sharedcontent

@@ -53,6 +53,12 @@ c.KubeSpawner.singleuser_extra_labels = get_config('singleuser.extra-labels', {}
 c.KubeSpawner.singleuser_uid = 0
 c.KubeSpawner.singleuser_fs_gid = 0
 
+c.Spawner.env_keep.append("http_proxy")
+c.Spawner.env_keep.append("https_proxy")
+c.Spawner.env_keep.append("HTTP_PROXY_HOST")
+c.Spawner.env_keep.append("HTTP_PROXY_PORT")
+c.Spawner.env_keep.append("no_proxy")
+
 # Configure dynamically provisioning pvc
 storage_type = get_config('singleuser.storage.type')
 if storage_type == 'dynamic':
