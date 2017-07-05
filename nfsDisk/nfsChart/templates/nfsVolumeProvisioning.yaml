@@ -31,32 +31,32 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: jupyterhub-raw-data
+  name: jupyterhub-public-data
   labels:
-    volume: jupyterhub-raw-data
+    volume: jupyterhub-public-data
 spec:
   capacity:
-    storage: {{.Values.storage.readOnly.size | quote}}
+    storage: {{.Values.storage.public.size | quote}}
   accessModes:
-    - ReadOnlyMany
+    - ReadWriteMany
   claimRef:
     namespace: jupyterhub
-    name: jupyterhub-raw-data
+    name: jupyterhub-public-data
   nfs:
     # FIXME: use the right IP from service
     server: {{.Values.nfsServer | quote}}
-    path: {{.Values.storage.readOnly.path | quote}}
+    path: {{.Values.storage.public.path | quote}}
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: jupyterhub-raw-data
+  name: jupyterhub-public-data
 spec:
   accessModes:
-    - ReadOnlyMany
+    - ReadWriteMany
   resources:
     requests:
-      storage: {{.Values.storage.readOnly.size | quote}}
+      storage: {{.Values.storage.public.size | quote}}
 
 ---
 apiVersion: v1

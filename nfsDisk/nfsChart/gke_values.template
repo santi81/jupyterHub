@@ -9,7 +9,7 @@ storage:
   shared:
     path: "/exports/SharedData"
     size: "20Gi"
-  readOnly:
+  public:
     path: "/exports/RawData"
     size: "20Gi"
   user:

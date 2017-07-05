@@ -4,22 +4,22 @@
 
 
 # Replace with the NFS Server 
-nfsServer: 10.39.240.209
+nfsServer: 10.125.2.77
 storage:
   shared:
-    path: "/exports/SharedData"
-    size: "20Gi"
-  readOnly:
-    path: "/exports/RawData"
-    size: "20Gi"
+    path: "/container_persistancy/s4h-ml-k8/SharedData/"
+    size: "3Ti"
+  public:
+    path: "/container_persistancy/s4h-ml-k8/RawData"
+    size: "3Ti"
   user:
-   path: "/exports/UserData"
-   size: "20Gi"
+   path: "/container_persistancy/s4h-ml-k8/UserData"
+   size: "3Ti"
 nfsWeb:
   serviceType:
-    type: LoadBalancer
+    type: NodePort
     nodePort:
-      port: 32500
+      port: 32000
     loadBalancer:
       publicIP: null
 

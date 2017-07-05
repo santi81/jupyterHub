@@ -23,13 +23,13 @@ spec:
               cpu: 100m
           volumeMounts:
             - mountPath: /home/Public
-              name: rawdata
+              name: publicdata
             - mountPath: /home/SharedContent
               name: sharedcontent
       volumes:
-       - name: rawdata
+       - name: publicdata
          persistentVolumeClaim: 
-           claimName: jupyterhub-raw-data
+           claimName: jupyterhub-public-data
            readOnly : True
        - name: sharedcontent
          persistentVolumeClaim: 

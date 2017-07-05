@@ -116,7 +116,7 @@ if shared_data_mounts_str:
         c.KubeSpawner.volumes += [{
             'name': 'shared-data-{name}'.format(name=shareName),
             'persistentVolumeClaim': {
-             'claimName': 'jupyterhub-raw-data',
+             'claimName': 'jupyterhub-public-data',
              'readOnly' : True
             }
 
